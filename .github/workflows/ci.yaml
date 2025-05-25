@@ -1,0 +1,22 @@
+name: CI                    # nombre del workflow
+
+on:                         # disparadores (triggers) del workflow
+  push:
+    branches: [main]        # El workflow se ejecutará cuando se haga un push a la rama main.
+  pull_request:
+    branches: [main]        # También cuando se cree o actualice un pull request hacia la rama main.
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Inspect machine
+      run: |
+        ls -al
+        whoami
+        pwd
+        node -v
+
+
+
