@@ -11,8 +11,8 @@ jobs:                       # Definición de los jobs (tareas) que componen el w
     runs-on: ubuntu-latest  # El job se ejecutará en una máquina virtual Ubuntu (última versión disponible en GitHub Actions).
 
     steps:                          # Lista de pasos a ejecutar en este job.
-    - uses: actions/checkout@v4     # Paso que clona el código del repositorio dentro del runner. Necesario para poder trabajar con el código fuente.
-
+    - name: Checkout
+      uses: actions/checkout@v4     # Paso que clona el código del repositorio dentro del runner. Necesario para poder trabajar con el código fuente.
     - name: build-test              # Nombre del paso visible en los logs de ejecución.
       working-directory: ./hagman-api   # Especifica que los comandos se ejecutarán dentro del directorio `hagman-api`.
       run: |                             # Indica que se ejecutarán múltiples comandos de shell. Instala dependencias desde package-lock.json, ejecuta script `build` y test.
