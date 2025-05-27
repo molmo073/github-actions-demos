@@ -1,32 +1,34 @@
-name: CI                                  # Nombre del workflow. Aparecerá como "CI" en la pestaña Actions de GitHub.
+name: CI
 
-on:                                       # Definición de eventos que disparan la ejecución del workflow.
+on:
   push:
-    branches: [main]                      # El workflow se ejecutará cuando haya un push a la rama main.
-    paths: ["hangman-api/**"]             #  el workflow solo se ejecute si los cambios afectan a la ruta concreta hangman-api/**
+    branches: [main]
+    paths: ["hangman-api/**"]
   pull_request:
-    branches: [main]                      # También se ejecutará cuando se cree o actualice un pull request hacia la rama main.
-    paths: ["hangman-api/**"]             #  el workflow solo se ejecute si los cambios afectan a la ruta concreta hangman-api/**
-jobs:                                     # Definición de los jobs (tareas) que componen el workflow.
-  build-test:                             # Nombre del job. Identifica esta serie de pasos como uno llamado "build-test".
-    runs-on: ubuntu-latest                # El job se ejecutará en una máquina virtual Ubuntu (última versión disponible en GitHub Actions).
-    strategy:                             # Aquí empieza la estrategia de matriz de versiones.
-      matrix:
-        node-version: [17, 18, 19]        # El job se ejecutará una vez por cada versión indicada de Node.js.
-        os: [Ubuntu-20.04, Ubuntu-22.04]  # Ejecutara un total de 6 jobs al ejecutar cada versión de Node.js en cada versión de Ubuntu.
-
-    steps:                                # Lista de pasos a ejecutar en este job.
-    - name: Checkout
-      uses: actions/checkout@v4           # Paso que clona el código del repositorio dentro del runner. Necesario para poder trabajar con el código fuente.
+    branches: [main]
+    paths: ["hangman-api/**"]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:                                
+    - name: Checkout-build
+      uses: actions/checkout@v4           
     - name: Setup Node.js node-version
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v4         
       with:
-        node-version: ${{ matrix.node-version }} 
-        # Esta acción instala y configura automáticamente la versión de Node.js definida en la matriz.
-        # `${{ matrix.node-version }}` toma el valor 17, 18 y luego 19, en ejecuciones separadas.
-    - name: build-test                    # Nombre del paso visible en los logs de ejecución.
-      working-directory: ./hangman-api    # Especifica que los comandos se ejecutarán dentro del directorio `hagman-api`.
-      run: |                              # Indica que se ejecutarán múltiples comandos de shell. Instala dependencias desde package-lock.json, ejecuta script `build` y test.
+        node-version: 20
+    - name: build
+      working-directory: ./hangman-api
+      run: |
         npm ci                           
         npm run build --if-present       
-        npm test                         
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout-test
+      uses: actions/checkout@v4
+    - name: test
+      run: |
+        npm ci                           
+        npm test      
