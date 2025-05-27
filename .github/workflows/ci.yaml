@@ -13,6 +13,7 @@ jobs:                                     # Definición de los jobs (tareas) que
     strategy:                             # Aquí empieza la estrategia de matriz de versiones.
       matrix:
         node-version: [17, 18, 19]        # El job se ejecutará una vez por cada versión indicada de Node.js.
+        os: [Ubuntu-20.04, Ubuntu-22.04]  # Ejecutara un total de 6 jobs al ejecutar cada versión de Node.js en cada versión de Ubuntu.
 
     steps:                                # Lista de pasos a ejecutar en este job.
     - name: Checkout
