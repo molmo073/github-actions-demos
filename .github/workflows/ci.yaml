@@ -37,7 +37,8 @@ jobs:
 
   audit:  # tercer job llamado test
     # if: ${{ always() }} # se ejecutaría siempre el jobs audit, independientemente de que build y test se ejecutaran ok.
-    needs: [test, build]  # se ejecuta si los primeros jobs test y build se ejecutan correctamente.
+    # needs: [test, build]  # se ejecuta si los primeros jobs test y build se ejecutan correctamente.
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Audit
