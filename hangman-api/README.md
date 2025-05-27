@@ -12,4 +12,4 @@ paths: ["hangman-api/**"]             #  el workflow solo se ejecute si los camb
     paths: ["hangman-api/**"]             #  el workflow solo se ejecute si los cambios afectan a la ruta concreta hangman-api/**
 ```
 
-## Modificamos de nuevo el README para provocar un push de la rama main y por tanto que se ejecute el workflow de split-jobs
+## Modificamos de nuevo el README para provocar un push de la rama main y por tanto que se ejecute el workflow de split-jobs.
