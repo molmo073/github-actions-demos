@@ -34,3 +34,10 @@ jobs:
       run: |
         npm ci                           
         npm test      
+
+  audit:  # tercer job llamado test
+    needs: [test, build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Audit
+        run: java --version
