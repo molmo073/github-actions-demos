@@ -24,7 +24,7 @@ jobs:
         npm run build --if-present       
 
   test:   # segundo job llamado test
-    needs: build      # hace que este job dependa de la correcta ejecucion del pirmer job build.
+    needs: build      # hace que este job dependa de la correcta ejecucion del primer job build.
     runs-on: ubuntu-latest
     steps:
     - name: Checkout-test
@@ -38,7 +38,7 @@ jobs:
   audit:  # tercer job llamado test
     # if: ${{ always() }} # se ejecutaría siempre el jobs audit, independientemente de que build y test se ejecutaran ok.
     # needs: [test, build]  # se ejecuta si los primeros jobs test y build se ejecutan correctamente.
-    needs: test
+    needs: test     # hace que este job dependa de la correcta ejecucion del segundo job test.
     runs-on: ubuntu-latest
     steps:
       - name: Audit
