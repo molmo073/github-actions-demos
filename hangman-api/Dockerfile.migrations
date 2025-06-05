@@ -1,0 +1,11 @@
+FROM node:16-bullseye 
+
+WORKDIR /opt/app
+
+COPY ./db/migrations ./db/migrations
+
+COPY ./knexfile.js ./knexfile.js
+
+RUN npm init -y
+
+RUN npm install knex pg dotenv
