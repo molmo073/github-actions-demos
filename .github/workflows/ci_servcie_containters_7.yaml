@@ -1,5 +1,4 @@
-name: CI - test integration
-
+name: CI - service containers
 on:
   workflow_dispatch:
   push:
