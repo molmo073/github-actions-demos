@@ -1,0 +1,23 @@
+name: CI                                  # Nombre del workflow. Aparecerá como "CI" en la pestaña Actions de GitHub.
+
+on:                                       # Definición de eventos que disparan la ejecución del workflow.
+  push:
+    branches: [main]                      # El workflow se ejecutará cuando haya un push a la rama main.
+    paths: ["hangman-api/**"]             #  el workflow solo se ejecute si los cambios afectan a la ruta concreta hangman-api/**
+  pull_request:
+    branches: [main]                      # También se ejecutará cuando se cree o actualice un pull request hacia la rama main.
+    paths: ["hangman-api/**"]             #  el workflow solo se ejecute si los cambios afectan a la ruta concreta hangman-api/**
+jobs:                                     # Definición de los jobs (tareas) que componen el workflow.
+  build-test:                             # Nombre del job. Identifica esta serie de pasos como uno llamado "build-test".
+    runs-on: ubuntu-latest                # El job se ejecutará en una máquina virtual Ubuntu (última versión disponible en GitHub Actions).
+
+    steps:                                # Lista de pasos a ejecutar en este job.
+    - name: Checkout
+      uses: actions/checkout@v4           # Paso que clona el código del repositorio dentro del runner. Necesario para poder trabajar con el código fuente.
+    - name: build-test                    # Nombre del paso visible en los logs de ejecución.
+      working-directory: ./hangman-api    # Especifica que los comandos se ejecutarán dentro del directorio `hagman-api`.
+      run: |                              # Indica que se ejecutarán múltiples comandos de shell. Instala dependencias desde package-lock.json, ejecuta script `build` y test.
+        npm ci                            
+        npm run build --if-present       
+        npm test                         
+
