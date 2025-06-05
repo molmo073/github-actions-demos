@@ -1,7 +1,7 @@
 name: CI - build artifacts
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:  # hace que podamos ejecutar nuestro workflow en github cuando deseemos
 
 jobs:
   build:   # primer job llamado build
