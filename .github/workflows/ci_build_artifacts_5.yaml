@@ -1,4 +1,4 @@
-name: CI - build artifacts
+name: CI - build artifacts II
 
 on:
   workflow_dispatch:  # hace que podamos ejecutar nuestro workflow en github cuando deseemos

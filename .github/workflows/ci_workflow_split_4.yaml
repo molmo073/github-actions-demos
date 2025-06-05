@@ -1,4 +1,4 @@
-name: CI
+name: CI - Split
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: CI                                  # Nombre del workflow. Aparecerá como "CI" en la pestaña Actions de GitHub.
+name: CI - build-test                     # Nombre del workflow. Aparecerá como "CI" en la pestaña Actions de GitHub.
 
 on:                                       # Definición de eventos que disparan la ejecución del workflow.
   push:
