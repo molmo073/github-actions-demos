@@ -1,6 +1,7 @@
 name: CI - test integration
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths: ["hangman-api/**"]
