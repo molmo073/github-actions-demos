@@ -45,14 +45,14 @@ jobs:
   
   integration-tests:
     runs-on: ubuntu-latest
-    services:
+    services:   # vamos a declarar en esta sección la base de datos
       postgres:
         image: postgres:14-alpine
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: hangman_db
-        options: 
+        options:    #opciones para que espere que la base de datos esté levantada
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
@@ -61,15 +61,16 @@ jobs:
           - 5432:5432
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+        uses: actions/checkout@v4       # Clonamos el repositorio en el runner
+      - name: Setup Node.js node-version
+        uses: actions/setup-node@v4     # configurar la version de node
         with:
           node-version: 16
       - name: Create database relationships
         working-directory: ./hangman-api
         env:
           DATABASE_PORT: 5432
-          DATABASE_HOST: postgres
+          DATABASE_HOST: localhost
           DATABASE_NAME: hangman_db
           DATABASE_USER: postgres
           DATABASE_PASSWORD: postgres
