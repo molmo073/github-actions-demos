@@ -1,6 +1,6 @@
 name: CI - service containers
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # permite ejecutarlo manualmente desde la interfaz de GitHub
   push:
     branches: [main]
     paths: ["hangman-api/**"]
@@ -70,7 +70,7 @@ jobs:
         working-directory: ./hangman-api
         env:
           DATABASE_PORT: 5432
-          DATABASE_HOST: localhost
+          DATABASE_HOST: postgres
           DATABASE_NAME: hangman_db
           DATABASE_USER: postgres
           DATABASE_PASSWORD: postgres
