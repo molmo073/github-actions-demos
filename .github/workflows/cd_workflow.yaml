@@ -42,12 +42,12 @@
             path: hangman-api/dist/
         - name: build and push docker image
           working-directory: ./hangman-api
-          env:
-            DOCKER_USER: "molmo073"
-            DOCKER_REPOSITORY: "hangman-api-2025"
-            DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
           run: |
-            echo $DOCKER_PASSWORD 
-            image=$DOCKER_USER/$DOCKER_REPOSITORY:${date +%s}
-            docker build -t $image -f Dockerfile.workflow .
-            docker push $image
+            TAG=$(date +%s)
+            IMAGE=${{ secrets.DOCKERHUB_USERNAME }}/hangman-api-2025:$TAG
+            docker build -t $IMAGE -f Dockerfile.workflow .
+            echo "Construcción completada"
+            echo "Autenticando en DockerHub"
+            echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+            docker push $IMAGE
+            echo "Construcción y push completados"
