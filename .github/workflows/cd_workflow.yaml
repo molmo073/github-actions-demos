@@ -1,6 +1,6 @@
   name: CD_Workflow
 
-  on:                   # Eventos que disparan el workflow
+  on:
     push:
     pull_request:
       branches: [main]
