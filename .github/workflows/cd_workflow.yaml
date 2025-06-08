@@ -1,5 +1,5 @@
-  name: CD_Workflow
-
+  name: CD_Workflow_actions_docker
+  
   on:
     push:
     pull_request:
@@ -54,5 +54,5 @@
           with:
             context: ./hangman-api
             push: true
-            tags: ${{ secrets.DOCKERHUB_USERNAME }}/hangman-api-2025::${{ env.TAG }}
+            tags: ${{ secrets.DOCKERHUB_USERNAME }}/hangman-api-2025:${{ env.TAG }}
             file: Dockerfile.workflow
