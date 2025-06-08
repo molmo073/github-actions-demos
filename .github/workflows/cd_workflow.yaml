@@ -55,4 +55,5 @@
             context: ./hangman-api
             push: true
             tags: ${{ secrets.DOCKERHUB_USERNAME }}/hangman-api-2025:${{ env.TAG }}
-            file: Dockerfile.workflow
+            file: ./hangman-api/Dockerfile.workflow
+            
