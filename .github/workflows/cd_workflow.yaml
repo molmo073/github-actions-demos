@@ -1,10 +1,6 @@
   name: CD_Workflow_actions_docker
   
   on:
-    push:
-    pull_request:
-      branches: [main]
-      paths: ["hangman-api/**"]
     workflow_dispatch:
       
   jobs:
