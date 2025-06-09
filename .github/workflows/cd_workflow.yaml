@@ -8,7 +8,7 @@
       uses: ./.github/workflows/reusable-node-build.yaml
       with:
         node-version: 16
-        working-directory: ./hangman-api
+        working-directory: hangman-api
         artifact-name: build-code
 
     delivery:
